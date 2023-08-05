@@ -5,12 +5,22 @@ const list = [0, 1, 2, 3, 4];
 
 const SideBar = () => {
   return (
-    <div className="bg-[#292b2c7c] h-[100svh] w-96 p-4 flex flex-col items-center gap-6">
-      <div className="flex justify-between items-center w-full title-color text-[min(6.5vw,_2rem)] font-bold">
-        <button type="button" className="rounded-full p-1 ">
-          <Image className="title-color" src={chevronLeft} alt="Left Arrow" />
-        </button>
-        <h1 className="text-center w-full">Good Afternoon</h1>
+    <div className="dark:bg-[#292b2c7c] bg-[#c9c9c9] h-[100svh] w-96 p-4 flex flex-col items-center gap-6">
+      <div className="flex flex-col gap-2 w-full">
+        <div className="flex justify-between items-center title-color font-semibold">
+          <h3>08 July 2023</h3>
+          <h3>20:53</h3>
+        </div>
+
+        <div className="flex justify-between items-center title-color text-[min(6.5vw,_2rem)] font-bold">
+          {/* <button
+            type="button"
+            className="rounded-full p-1 bg-box-primary-light dark:bg-box-primary-dark"
+          >
+            <Image className="title-color" src={chevronLeft} alt="Left Arrow" />
+          </button> */}
+          <h1 className="w-full text-center">Good Afternoon</h1>
+        </div>
       </div>
 
       <div className="flex flex-col gap-2 max-w-full">
@@ -18,7 +28,7 @@ const SideBar = () => {
           Notes History
         </h3>
 
-        <div className="flex flex-col items-center gap-2 bg-[#393c3d7c] p-3 rounded-xl">
+        <div className="flex flex-col overflow-auto items-center gap-2 bg-box-primary-light dark:bg-box-primary-dark p-3 rounded-xl">
           <h3 className="font-semibold self-start title-color">Today</h3>
 
           <div className="flex flex-col max-w-full">
@@ -42,18 +52,22 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className="flex flex-col items-center gap-2 bg-[#393c3d7c] p-3 rounded-xl">
+        <div className="flex flex-col items-center gap-2 bg-box-primary-light dark:bg-box-primary-dark p-3 rounded-xl">
           <h3 className="font-semibold text-lg self-start title-color">
             Yesterday
           </h3>
         </div>
 
-        <div className="flex flex-col items-center gap-2 bg-[#393c3d7c] p-3 rounded-xl">
-          <h3 className="font-semibold text-lg self-start title-color">Previous 7 days</h3>
+        <div className="flex flex-col items-center gap-2 bg-box-primary-light dark:bg-box-primary-dark p-3 rounded-xl">
+          <h3 className="font-semibold text-lg self-start title-color">
+            Previous 7 days
+          </h3>
         </div>
 
-        <div className="flex flex-col items-center gap-2 bg-[#393c3d7c] p-3 rounded-xl">
-          <h3 className="font-semibold text-lg self-start title-color">Older Notes</h3>
+        <div className="flex flex-col items-center gap-2 bg-box-primary-light dark:bg-box-primary-dark p-3 rounded-xl">
+          <h3 className="font-semibold text-lg self-start title-color">
+            Older Notes
+          </h3>
         </div>
       </div>
     </div>

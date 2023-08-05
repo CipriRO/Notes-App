@@ -10,9 +10,12 @@ module.exports = {
       colors: {
         "divider-white": "#E8E8E8",
         "divider-dark": "#ffffff1a",
-        "box-primary": "#303030",
+        "box-primary-dark": "#393c3d7c",
+        "box-primary-light": "#dadada",
         "subtle-light": "#969696",
         "subtle-dark": "#ffffff66",
+        success: "#22c55e",
+        error: "#ef4444",
       },
 
       backgroundImage: {
