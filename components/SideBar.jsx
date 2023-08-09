@@ -1,11 +1,10 @@
 import Image from "next/image";
-import chevronLeft from "@/public/icons/chevron-left.svg";
 
 const list = [0, 1, 2, 3, 4];
 
 const SideBar = () => {
   return (
-    <div className="dark:bg-[#292b2c7c] bg-[#c9c9c9] h-[100svh] w-96 p-4 flex flex-col items-center gap-6">
+    <div className="dark:bg-box-secondary-dark bg-box-secondary-light h-[100svh] w-96 p-4 flex flex-col items-center gap-6">
       <div className="flex flex-col gap-2 w-full">
         <div className="flex justify-between items-center title-color font-semibold">
           <h3>08 July 2023</h3>
@@ -15,7 +14,7 @@ const SideBar = () => {
         <div className="flex justify-between items-center title-color text-[min(6.5vw,_2rem)] font-bold">
           {/* <button
             type="button"
-            className="rounded-full p-1 bg-box-primary-light dark:bg-box-primary-dark"
+            className=""
           >
             <Image className="title-color" src={chevronLeft} alt="Left Arrow" />
           </button> */}

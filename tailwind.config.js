@@ -10,8 +10,10 @@ module.exports = {
       colors: {
         "divider-white": "#E8E8E8",
         "divider-dark": "#ffffff1a",
-        "box-primary-dark": "#393c3d7c",
+        "box-primary-dark": "#2b2d2e",
         "box-primary-light": "#dadada",
+        "box-secondary-dark": "#242627",
+        "box-secondary-light": "#c9c9c9",
         "subtle-light": "#969696",
         "subtle-dark": "#ffffff66",
         success: "#22c55e",
@@ -25,5 +27,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
