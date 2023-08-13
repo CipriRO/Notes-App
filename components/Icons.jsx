@@ -41,7 +41,7 @@ export const sync = () => {
   );
 };
 
-export const plus = ({className}) => {
+export const plus = ({ className }) => {
   return (
     <svg
       width="26"
@@ -74,6 +74,25 @@ export const chevronLeft = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="m15 4-8 8 8 8"></path>
+    </svg>
+  );
+};
+
+export const CircleX = () => {
+  return (
+    <svg
+      width="30"
+      height="30"
+      fill="none"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-width="2"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20v0Z"></path>
+      <path d="m9 15 6-6"></path>
+      <path d="M15 15 9 9"></path>
     </svg>
   );
 };

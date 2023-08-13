@@ -26,7 +26,7 @@ const NoteButtons = ({ note }) => {
 
       <button
         title="Delete the Note"
-        onClick={() => deleteNote('2542353253552')}
+        onClick={() => deleteNote(note._id)}
         className="rounded-full p-2 text-error dark:bg-box-primary-dark bg-box-primary-light"
       >
         <Icons.trash />

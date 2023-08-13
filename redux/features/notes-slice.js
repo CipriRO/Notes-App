@@ -15,6 +15,10 @@ export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
       },
     });
 
+    if (!res.ok) {
+      throw new Error("Unable to load the Notes. Retry?");
+    }
+
     return res.json();
   } catch {
     throw new Error("Unable to load the Notes. Retry?");
@@ -31,6 +35,10 @@ export const deleteNotes = createAsyncThunk("notes/deleteNotes", async (id) => {
       body: JSON.stringify(id),
     });
 
+    if (!res.ok) {
+      throw new Error("Unable to delete the Note. Retry?");
+    }
+
     return id;
   } catch {
     throw new Error("Unable to delete the Note. Retry?");
@@ -40,10 +48,18 @@ export const deleteNotes = createAsyncThunk("notes/deleteNotes", async (id) => {
 export const Notes = createSlice({
   name: "notes",
   initialState,
+  reducers: {
+    closeError: (state) => {
+      return {
+        ...state,
+        error: false,
+      };
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchNotes.rejected, (state, action) => {
-        return { ...state, error: action.error.message };
+        return { ...state, error: action.error.message, status: "idle" };
       })
       .addCase(fetchNotes.pending, (state) => {
         return { ...state, status: "loading" };
@@ -71,4 +87,4 @@ export const Notes = createSlice({
 });
 
 export default Notes.reducer;
-export const { addNote, removeNote, modifyNote } = Notes.actions;
+export const { closeError } = Notes.actions;

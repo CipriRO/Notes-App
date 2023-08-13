@@ -1,7 +1,7 @@
 import SideBar from "@/components/SideBar";
 import "/styles/globals.css";
 import { ReduxProvider } from "@/redux/provider";
-import Error from "@/components/error";
+import ErrorComp from "@/components/ErrorComp";
 
 export const metadata = {
   title: "Notes App",
@@ -13,7 +13,7 @@ const RootLayout = ({ children }) => {
     <html lang="en">
       <body className="flex h-[100svh]">
         <ReduxProvider>
-          <Error />
+          <ErrorComp />
           <SideBar />
           {children}
         </ReduxProvider>

@@ -12,7 +12,7 @@ const Note = ({ params }) => {
   const note = useSelector((state) =>
     state.notes.notes.find((note) => note._id === id)
   );
-  console.log(note)
+
   return (
     <main className="overflow-auto p-3 w-full h-full">
       <motion.div
