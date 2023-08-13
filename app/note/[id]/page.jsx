@@ -7,16 +7,16 @@ import { useSelector } from "react-redux";
 
 const Note = ({ params }) => {
   const id = params.id;
-  const createNoteId = "createNote";
+  const createNoteId = "create-note";
 
   const note = useSelector((state) =>
-    state.notesReducer.find((note) => note.id === Number(id))
+    state.notes.notes.find((note) => note._id === id)
   );
-
+  console.log(note)
   return (
     <main className="overflow-auto p-3 w-full h-full">
       <motion.div
-        layoutId={id !== createNoteId ? "note" + id : "createNote"}
+        layoutId={id !== createNoteId ? "note" + id : createNoteId}
         className="flex flex-col p-4 gap-5 h-full w-full bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
       >
         <div className="flex items-center gap-3">

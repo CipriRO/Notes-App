@@ -1,8 +1,8 @@
-import Image from "next/image";
 
 const list = [0, 1, 2, 3, 4];
 
 const SideBar = () => {
+
   return (
     <div className="dark:bg-box-secondary-dark bg-box-secondary-light h-[100svh] w-96 p-4 flex flex-col items-center gap-6">
       <div className="flex flex-col gap-2 w-full">
