@@ -2,6 +2,7 @@
 import * as Icons from "@/components/Icons";
 
 import NotesList from "@/components/NotesList";
+import { Ring } from "@uiball/loaders";
 import { motion } from "framer-motion";
 import { useRouter } from "next-nprogress-bar";
 import { useSelector } from "react-redux";
@@ -23,11 +24,15 @@ export default function Home() {
             notesState !== "loading" && "cursor-pointer"
           } bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl shadow-xl`}
         >
-          {notesState !== "loading" && (
-            <div className="p-3 rounded-full w-16 aspect-square shadow-lg title-color dark:bg-box-primary-dark bg-box-primary-light">
+          <div className="p-3 rounded-full w-16 aspect-square shadow-lg title-color dark:bg-box-primary-dark bg-box-primary-light">
+            {notesState === "idle" ? (
               <Icons.plus className="w-full h-full" />
-            </div>
-          )}
+            ) : (
+              notesState === "loading" && (
+                <Ring size={40} lineWeight={5} speed={2} color="currentColor" />
+              )
+            )}
+          </div>
           <h1 className="text-lg font-semibold">
             {notesState === "idle"
               ? "Create a new Note"

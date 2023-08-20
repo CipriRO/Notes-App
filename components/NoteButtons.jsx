@@ -27,7 +27,7 @@ const NoteButtons = ({ note, create, save, saveAvb, createAvb }) => {
           onClick={() => create()}
           title="Upload the Note"
           className={`rounded-full p-2 dark:bg-box-primary-dark bg-box-primary-light ${
-            !createAvb && "opacity-10"
+            !createAvb && "opacity-10 cursor-default"
           }`}
         >
           <Icons.cloudUpload />
@@ -39,7 +39,7 @@ const NoteButtons = ({ note, create, save, saveAvb, createAvb }) => {
           onClick={() => save()}
           title="Save the Note"
           className={`rounded-full p-2 dark:bg-box-primary-dark bg-box-primary-light ${
-            !saveAvb && "opacity-10"
+            !saveAvb && "opacity-10 cursor-default"
           }`}
         >
           <Icons.save />
