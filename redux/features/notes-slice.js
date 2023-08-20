@@ -62,7 +62,7 @@ export const saveNote = createAsyncThunk("notes/saveNote", async (data) => {
       throw new Error("Unable to save the Note. Retry?");
     }
 
-    return data;
+    return { ...data, statusText: "Synced", status: true };
   } catch {
     throw new Error("Unable to save the Note. Retry?");
   }
@@ -136,7 +136,7 @@ export const Notes = createSlice({
       .addCase(createNote.fulfilled, (state, action) => {
         return {
           ...state,
-          notes: [...state.notes, action.payload],
+          notes: [action.payload, ...state.notes],
         };
       })
       .addCase(saveNote.rejected, (state, action) => {
@@ -148,9 +148,10 @@ export const Notes = createSlice({
       .addCase(saveNote.fulfilled, (state, action) => {
         return {
           ...state,
-          notes: state.notes.map((note) =>
-            note._id === action.payload._id ? action.payload : note
-          ),
+          notes: [
+            action.payload,
+            ...state.notes.filter((note) => note._id !== action.payload._id),
+          ],
         };
       });
   },

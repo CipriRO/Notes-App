@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   await connectMongoDB();
-  const notes = await Notes.find();
+  const notes = await Notes.find().sort({ updatedAt: -1 });
   return NextResponse.json({ notes });
 }
 
