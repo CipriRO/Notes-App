@@ -3,7 +3,7 @@ import * as Icons from "@/components/Icons";
 
 import NotesList from "@/components/NotesList";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useSelector } from "react-redux";
 
 export default function Home() {

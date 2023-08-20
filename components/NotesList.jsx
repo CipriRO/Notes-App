@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import NoteButtons from "./NoteButtons";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next-nprogress-bar";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNotes } from "@/redux/features/notes-slice";
@@ -10,13 +10,16 @@ import { fetchNotes } from "@/redux/features/notes-slice";
 const NotesList = () => {
   const dispatch = useDispatch();
   const notesStatus = useSelector((state) => state.notes.status);
+  const fetchStatus = useSelector((state) => state.notes.fetched);
+  const notes = useSelector((state) => state.notes.notes);
 
   useEffect(() => {
-    notesStatus === "idle" && dispatch(fetchNotes());
+    !fetchStatus &&
+      notesStatus === "idle" &&
+      !notes.length &&
+      dispatch(fetchNotes());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
-
-  const notes = useSelector((state) => state.notes.notes);
 
   const router = useRouter();
 
@@ -36,9 +39,12 @@ const NotesList = () => {
           key={note._id}
           className="flex flex-col justify-between items-center overflow-hidden cursor-pointer gap-3 p-4 max-h-72 flex-1 basis-64 shadow-xl bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
         >
-          <motion.div layout className="flex flex-col overflow-hidden gap-3">
-            <div className="flex justify-between">
-              <motion.h1 className="text-lg font-bold title-color">
+          <motion.div
+            layout
+            className="flex flex-col overflow-hidden gap-3 w-full"
+          >
+            <div className="flex justify-between items-center">
+              <motion.h1 className="text-xl font-bold title-color max-w-full overflow-hidden truncate">
                 {note.title}
               </motion.h1>
               <NoteButtons note={note} />

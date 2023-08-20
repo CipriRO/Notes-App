@@ -2,12 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 const notesSchema = new Schema(
   {
-    title: String,
-    content: String,
-    statusText: String,
-    status: Boolean,
-    String,
-    dateAndTime: String,
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    statusText: { type: String, required: true },
+    status: { type: Boolean, required: true },
   },
   {
     timestamps: true,

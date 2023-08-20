@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
   notes: [],
   status: "idle",
+  fetched: false,
   error: false,
 };
 
@@ -25,9 +26,51 @@ export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
   }
 });
 
+export const createNote = createAsyncThunk("notes/createNote", async (note) => {
+  try {
+    const res = await fetch("../api/notes", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(note),
+    });
+
+    if (!res.ok) {
+      throw new Error("Unable to create the Note. Retry?");
+    }
+
+    const data = await res.json();
+    const _id = data._id;
+    return { ...note, _id, statusText: "Synced", status: true };
+  } catch {
+    throw new Error("Unable to create the Note. Retry?");
+  }
+});
+
+export const saveNote = createAsyncThunk("notes/saveNote", async (data) => {
+  try {
+    const res = await fetch("../api/notes", {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      throw new Error("Unable to save the Note. Retry?");
+    }
+
+    return data;
+  } catch {
+    throw new Error("Unable to save the Note. Retry?");
+  }
+});
+
 export const deleteNotes = createAsyncThunk("notes/deleteNotes", async (id) => {
   try {
-    await fetch("../api/notes", {
+    const res = await fetch("../api/notes", {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
@@ -69,6 +112,7 @@ export const Notes = createSlice({
           ...state,
           notes: action.payload.notes,
           status: "idle",
+          fetched: true,
         };
       })
       .addCase(deleteNotes.rejected, (state, action) => {
@@ -81,6 +125,32 @@ export const Notes = createSlice({
         return {
           ...state,
           notes: state.notes.filter((note) => note._id !== action.payload.id),
+        };
+      })
+      .addCase(createNote.rejected, (state, action) => {
+        return {
+          ...state,
+          error: action.error.message,
+        };
+      })
+      .addCase(createNote.fulfilled, (state, action) => {
+        return {
+          ...state,
+          notes: [...state.notes, action.payload],
+        };
+      })
+      .addCase(saveNote.rejected, (state, action) => {
+        return {
+          ...state,
+          error: action.error.message,
+        };
+      })
+      .addCase(saveNote.fulfilled, (state, action) => {
+        return {
+          ...state,
+          notes: state.notes.map((note) =>
+            note._id === action.payload._id ? action.payload : note
+          ),
         };
       });
   },

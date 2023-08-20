@@ -14,3 +14,22 @@ export async function DELETE(request) {
   await Notes.findByIdAndDelete(id);
   return NextResponse.json({ status: 200 });
 }
+
+export async function POST(request) {
+  const { title, content } = await request.json();
+  await connectMongoDB();
+  const newNote = await Notes.create({
+    title,
+    content,
+    statusText: "Synced",
+    status: true,
+  });
+  return NextResponse.json({ _id: newNote._id.toString() });
+}
+
+export async function PUT(request) {
+  const { _id, title, content } = await request.json();
+  await connectMongoDB();
+  await Notes.findByIdAndUpdate(_id, { title, content });
+  return NextResponse.json({ status: 200 });
+}
