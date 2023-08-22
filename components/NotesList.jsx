@@ -32,7 +32,7 @@ const NotesList = () => {
   return (
     <>
       {notes.map((note) => (
-        <motion.div
+        <motion.section
           onClick={(e) => handleClick(e, note._id)}
           layout
           layoutId={"note" + note._id}
@@ -72,7 +72,7 @@ const NotesList = () => {
             </h3>
             {/* <p>{note.dateAndTime}</p> */}
           </motion.div>
-        </motion.div>
+        </motion.section>
       ))}
     </>
   );

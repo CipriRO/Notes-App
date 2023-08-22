@@ -1,4 +1,3 @@
-import SideBar from "@/components/SideBar";
 import "/styles/globals.css";
 import { ReduxProvider } from "@/redux/provider";
 import ErrorComp from "@/components/ErrorComp";
@@ -16,7 +15,6 @@ const RootLayout = ({ children }) => {
         <LoaderProvider>
           <ReduxProvider>
             <ErrorComp />
-            <SideBar />
             {children}
           </ReduxProvider>
         </LoaderProvider>
