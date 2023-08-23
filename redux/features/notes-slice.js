@@ -7,24 +7,28 @@ const initialState = {
   error: false,
 };
 
-export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
-  try {
-    const res = await fetch("../api/notes", {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+export const fetchNotes = createAsyncThunk(
+  "notes/fetchNotes",
+  async (email) => {
+    try {
+      const res = await fetch("../../api/notes/getNotes", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(email),
+      });
 
-    if (!res.ok) {
+      if (!res.ok) {
+        throw new Error("Unable to load the Notes. Retry?");
+      }
+
+      return res.json();
+    } catch {
       throw new Error("Unable to load the Notes. Retry?");
     }
-
-    return res.json();
-  } catch {
-    throw new Error("Unable to load the Notes. Retry?");
   }
-});
+);
 
 export const createNote = createAsyncThunk("notes/createNote", async (note) => {
   try {

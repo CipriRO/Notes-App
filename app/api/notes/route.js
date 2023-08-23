@@ -2,12 +2,6 @@ import connectMongoDB from "@/mongodb/connectMongoDB";
 import Notes from "@/mongodb/notes";
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  await connectMongoDB();
-  const notes = await Notes.find().sort({ updatedAt: -1 });
-  return NextResponse.json({ notes });
-}
-
 export async function DELETE(request) {
   const { id } = await request.json();
   await connectMongoDB();
@@ -16,11 +10,12 @@ export async function DELETE(request) {
 }
 
 export async function POST(request) {
-  const { title, content } = await request.json();
+  const { title, content, user } = await request.json();
   await connectMongoDB();
   const newNote = await Notes.create({
     title,
     content,
+    user,
     statusText: "Synced",
     status: true,
   });
