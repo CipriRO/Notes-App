@@ -9,14 +9,13 @@ const initialState = {
 
 export const fetchNotes = createAsyncThunk(
   "notes/fetchNotes",
-  async (email) => {
+  async () => {
     try {
-      const res = await fetch("../../api/notes/getNotes", {
-        method: "post",
+      const res = await fetch("../../api/notes", {
+        method: "get",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(email),
       });
 
       if (!res.ok) {

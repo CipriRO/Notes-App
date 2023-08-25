@@ -40,7 +40,7 @@ const NotesList = () => {
           layout
           layoutId={"note" + note._id}
           key={note._id}
-          className="flex flex-col justify-between items-center overflow-hidden cursor-pointer gap-3 p-4 max-h-72 w-80 shadow-xl bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
+          className="flex flex-col justify-between items-center overflow-hidden cursor-pointer gap-3 p-4 max-h-72 max-w-[25rem] flex-1 basis-80 shadow-xl bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
         >
           <motion.div
             layout

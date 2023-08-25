@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useRouter } from "next-nprogress-bar";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
 
 const Note = ({ params }) => {
   const id = params.id;
@@ -15,6 +16,8 @@ const Note = ({ params }) => {
   const note = useSelector((state) =>
     state.notes.notes.find((note) => note._id === id)
   );
+  const { data: session } = useSession();
+
   const [title, setTitle] = useState(id !== createNoteId ? note.title : "");
   const [content, setContent] = useState(
     id !== createNoteId ? note.content : ""
@@ -28,9 +31,9 @@ const Note = ({ params }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const HandlecreateNote = () => {
+  const HandleCreateNote = () => {
     if (create) {
-      const data = { title, content };
+      const data = { title, content, user: session.user.email };
       dispatch(createNote(data));
       router.push("/");
     }
@@ -76,7 +79,7 @@ const Note = ({ params }) => {
           </div>
 
           <NoteButtons
-            create={HandlecreateNote}
+            create={HandleCreateNote}
             save={HandleSaveNote}
             note={note}
             saveAvb={save}
