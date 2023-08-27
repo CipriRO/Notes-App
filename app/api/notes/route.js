@@ -2,22 +2,10 @@ import connectMongoDB from "@/mongodb/connectMongoDB";
 import Notes from "@/mongodb/notes";
 import { NextResponse } from "next/server";
 
-import { getServerSession } from "next-auth/next";
-import { appOptions } from "@/lib/appOptions";
+import AuthHandler from "@/lib/AuthHandler";
 
-const authHandler = async (req, res) => {
-  const session = await getServerSession(appOptions);
-  console.log(session);
-
-  if (!session) {
-    return null;
-  } else {
-    return session.user.email;
-  }
-};
-
-export async function GET(req, res) {
-  const user = await authHandler(req, res);
+export async function GET() {
+  const user = await AuthHandler();
   if (!user) {
     return NextResponse.json(null, { status: 401 });
   }
@@ -27,8 +15,8 @@ export async function GET(req, res) {
   return NextResponse.json({ notes });
 }
 
-export async function DELETE(request, response) {
-  const user = await authHandler(request, response);
+export async function DELETE(request) {
+  const user = await AuthHandler();
   if (!user) {
     return NextResponse.json(null, { status: 401 });
   }
@@ -39,8 +27,8 @@ export async function DELETE(request, response) {
   return NextResponse.json(null, { status: 200 });
 }
 
-export async function POST(request, response) {
-  const user = await authHandler(request, response);
+export async function POST(request) {
+  const user = await AuthHandler();
 
   const { title, content, user: userId } = await request.json();
   if (!user || user !== userId) {
@@ -58,8 +46,8 @@ export async function POST(request, response) {
   return NextResponse.json({ _id: newNote._id.toString() });
 }
 
-export async function PUT(request, response) {
-  const user = await authHandler(request, response);
+export async function PUT(request) {
+  const user = await AuthHandler();
   if (!user) {
     return NextResponse.json(null, { status: 401 });
   }

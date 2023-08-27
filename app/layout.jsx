@@ -12,7 +12,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className="flex h-[100svh]">
+      <body className="h-[100svh] p-3">
         <LoaderProvider>
           <NextAuthProvider>
             <ReduxProvider>

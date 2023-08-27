@@ -19,7 +19,6 @@ const NotesList = () => {
     !fetchStatus &&
       session &&
       notesStatus === "idle" &&
-      !notes.length &&
       dispatch(fetchNotes({ email: session.user.email }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, session]);

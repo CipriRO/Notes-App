@@ -7,27 +7,42 @@ const initialState = {
   error: false,
 };
 
-export const fetchNotes = createAsyncThunk(
-  "notes/fetchNotes",
-  async () => {
-    try {
-      const res = await fetch("../../api/notes", {
-        method: "get",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+export const fetchNotes = createAsyncThunk("notes/fetchNotes", async () => {
+  try {
+    const res = await fetch("../../api/notes", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-      if (!res.ok) {
-        throw new Error("Unable to load the Notes. Retry?");
-      }
-
-      return res.json();
-    } catch {
+    if (!res.ok) {
       throw new Error("Unable to load the Notes. Retry?");
     }
+
+    return res.json();
+  } catch {
+    throw new Error("Unable to load the Notes. Retry?");
   }
-);
+});
+
+export const fetchNote = createAsyncThunk("notes/fetchNote", async (data) => {
+  try {
+    const res = await fetch(`../api/notes/${data._id}`, {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!res.ok) {
+      throw new Error("Unable to load the Note. Retry?");
+    }
+
+    return res.json();
+  } catch {
+    throw new Error("Unable to load the Note. Retry?");
+  }
+});
 
 export const createNote = createAsyncThunk("notes/createNote", async (note) => {
   try {
@@ -117,6 +132,15 @@ export const Notes = createSlice({
           status: "idle",
           fetched: true,
         };
+      })
+      .addCase(fetchNote.rejected, (state, action) => {
+        return {
+          ...state,
+          error: action.error.message,
+        };
+      })
+      .addCase(fetchNote.fulfilled, (state, action) => {
+        return { ...state, notes: [action.payload.note] };
       })
       .addCase(deleteNotes.rejected, (state, action) => {
         return {

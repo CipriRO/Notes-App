@@ -20,16 +20,21 @@ const AddNote = () => {
         !e.target.closest(".logOut") &&
         router.push("/note/create-note")
       }
-      layoutId="create-note"
+      layoutId="createNote"
       layout
-      className={`flex flex-col justify-center items-center p-4 h-72 w-80 ${notesState !== "loading" && userStatus === 'authenticated' && "cursor-pointer"
+      className={`flex flex-col justify-center items-center p-4 h-72 w-80 ${
+        notesState !== "loading" &&
+        userStatus === "authenticated" &&
+        "cursor-pointer"
       } bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl shadow-xl`}
     >
       <div className="relative flex flex-col gap-3 justify-center items-center h-full w-full">
         {!session && (
           <>
             <motion.div
-              onClick={() => signIn("google")}
+              onClick={() =>
+                userStatus === "unauthenticated" && signIn("google")
+              }
               layoutId="signIn"
               className="dark:bg-box-primary-dark py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit cursor-pointer"
             >
