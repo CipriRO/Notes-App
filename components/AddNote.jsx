@@ -36,7 +36,7 @@ const AddNote = () => {
                 userStatus === "unauthenticated" && signIn("google")
               }
               layoutId="signIn"
-              className="dark:bg-box-primary-dark py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit cursor-pointer"
+              className="dark:bg-box-primary-dark bg-box-primary-light shadow py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit cursor-pointer"
             >
               <Icons.google />
               <h4 className="font-semibold">
@@ -56,7 +56,7 @@ const AddNote = () => {
             <div className="absolute top-0 flex gap-2">
               <motion.div
                 layoutId="signIn"
-                className="dark:bg-box-primary-dark py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit"
+                className="dark:bg-box-primary-dark bg-box-primary-light shadow py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit"
               >
                 <Image
                   src={session.user.image}
@@ -70,7 +70,7 @@ const AddNote = () => {
 
               <button
                 onClick={() => signOut()}
-                className="logOut p-3 rounded-full dark:bg-box-primary-dark text-error"
+                className="logOut p-3 rounded-full dark:bg-box-primary-dark bg-box-primary-light shadow text-error"
               >
                 <Icons.signOut />
               </button>

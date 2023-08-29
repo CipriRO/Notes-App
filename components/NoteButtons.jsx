@@ -26,7 +26,7 @@ const NoteButtons = ({ note, create, save, saveAvb, createAvb }) => {
         <button
           onClick={() => create()}
           title="Upload the Note"
-          className={`rounded-full p-2 dark:bg-box-primary-dark bg-box-primary-light ${
+          className={`rounded-full p-2 shadow dark:bg-box-primary-dark bg-box-primary-light ${
             !createAvb && "opacity-10 cursor-default"
           }`}
         >
@@ -38,7 +38,7 @@ const NoteButtons = ({ note, create, save, saveAvb, createAvb }) => {
         <button
           onClick={() => save()}
           title="Save the Note"
-          className={`rounded-full p-2 dark:bg-box-primary-dark bg-box-primary-light ${
+          className={`rounded-full shadow p-2 dark:bg-box-primary-dark bg-box-primary-light ${
             !saveAvb && "opacity-10 cursor-default"
           }`}
         >
@@ -53,7 +53,7 @@ const NoteButtons = ({ note, create, save, saveAvb, createAvb }) => {
             deleteNote(note._id);
             saveBtn && router.push("/");
           }}
-          className="rounded-full p-2 text-error dark:bg-box-primary-dark bg-box-primary-light"
+          className="rounded-full shadow p-2 text-error dark:bg-box-primary-dark bg-box-primary-light"
         >
           <Icons.trash />
         </button>

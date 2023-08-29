@@ -13,5 +13,8 @@ export async function GET(request, { params }) {
   const { id } = params;
   await connectMongoDB();
   const note = await Notes.findOne({ _id: id, user });
+  if (!note) {
+    return NextResponse.redirect("/");
+  }
   return NextResponse.json({ note });
 }

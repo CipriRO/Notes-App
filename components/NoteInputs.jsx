@@ -6,7 +6,7 @@ import NoteButtons from "./NoteButtons";
 import { useRouter } from "next-nprogress-bar";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { createNote } from "@/redux/features/notes-slice";
+import { createNote, saveNote } from "@/redux/features/notes-slice";
 import { useDispatch } from "react-redux";
 
 const NoteInputs = ({ id, note, createMode }) => {
@@ -55,19 +55,19 @@ const NoteInputs = ({ id, note, createMode }) => {
   return (
     <motion.main
       layoutId={!createMode ? "note" + id : 'createNote'}
-      className="flex flex-col p-4 gap-5 w-full h-full bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
+      className="flex flex-col p-4 gap-5 w-full h-full shadow-md bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
     >
       <div className="flex w-full justify-between items-center">
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="p-2 rounded-full dark:bg-box-primary-dark bg-box-primary-light"
+            className="p-2 rounded-full shadow dark:bg-box-primary-dark bg-box-primary-light"
           >
             <Icons.chevronLeft />
           </Link>
           <motion.input
             type="text"
-            className="placeholder:opacity-50 text-2xl font-bold title-color bg-transparent outline-none px-2 py-1 rounded-xl w-96 border-2 dark:border-subtle-dark/10 border-subtle-light/10"
+            className="placeholder:dark:opacity-50 text-2xl font-bold title-color bg-transparent outline-none px-2 py-1 rounded-xl w-96 border-2 dark:border-subtle-dark/10 border-subtle-light/50"
             placeholder="your beautiful title.."
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -84,7 +84,7 @@ const NoteInputs = ({ id, note, createMode }) => {
       </div>
 
       <motion.textarea
-        className="placeholder:opacity-50 whitespace-pre-line bg-transparent outline-none resize-none h-full border-2 dark:border-subtle-dark/10 border-subtle-light/10 p-3 rounded-2xl"
+        className="placeholder:dark:opacity-50 whitespace-pre-line bg-transparent outline-none resize-none h-full border-2 dark:border-subtle-dark/10 border-subtle-light/50 p-3 rounded-2xl"
         placeholder="what's in your mind? ;)"
         onChange={(e) => setContent(e.target.value)}
         defaultValue={content}

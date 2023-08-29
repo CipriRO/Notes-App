@@ -25,6 +25,7 @@ const Note = ({ params }) => {
   return (
     <>
       {!isLoading && (note || createMode) ? (
+        
         <NoteInputs id={id} note={note} createMode={createMode} />
       ) : (
         <Loading />
