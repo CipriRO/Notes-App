@@ -22,7 +22,7 @@ const AddNote = () => {
       }
       layoutId="createNote"
       layout
-      className={`flex flex-col justify-center items-center p-4 h-72 w-80 ${
+      className={`flex flex-col justify-center items-center p-4 h-64 sm:h-72 w-full sm:w-80 ${
         notesState !== "loading" &&
         userStatus === "authenticated" &&
         "cursor-pointer"
@@ -53,7 +53,7 @@ const AddNote = () => {
 
         {userStatus === "authenticated" && (
           <>
-            <div className="absolute top-0 flex gap-2">
+            <div className="absolute top-0 flex gap-2 items-center">
               <motion.div
                 layoutId="signIn"
                 className="dark:bg-box-primary-dark bg-box-primary-light shadow py-2 px-3 rounded-full flex justify-center items-center gap-2 text-color w-fit"
@@ -77,7 +77,7 @@ const AddNote = () => {
             </div>
 
             <div className="flex flex-col gap-3 items-center">
-              <div className="p-3 rounded-full w-16 aspect-square shadow-lg title-color dark:bg-box-primary-dark bg-box-primary-light">
+              <div className="p-3 rounded-full w-16 h-16 aspect-square shadow-lg title-color dark:bg-box-primary-dark bg-box-primary-light">
                 {notesState === "idle" ? (
                   <Icons.plus className="w-full h-full" />
                 ) : (

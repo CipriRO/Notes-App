@@ -12,7 +12,7 @@ export const metadata = {
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
-      <body className="h-[100svh] p-3">
+      <body className="h-[100svh] p-1 sm:p-3">
         <LoaderProvider>
           <NextAuthProvider>
             <ReduxProvider>

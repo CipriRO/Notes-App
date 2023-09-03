@@ -55,10 +55,10 @@ const NoteInputs = ({ id, note, createMode }) => {
   return (
     <motion.main
       layoutId={!createMode ? "note" + id : 'createNote'}
-      className="flex flex-col p-4 gap-5 w-full h-full shadow-md bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
+      className="flex flex-col p-2 sm:p-4 gap-2 sm:gap-5 w-full h-full shadow-md bg-box-secondary-light dark:bg-box-secondary-dark rounded-2xl"
     >
-      <div className="flex w-full justify-between items-center">
-        <div className="flex items-center gap-3">
+      <div className="flex w-full justify-between items-center gap-2">
+        <div className="flex items-center gap-2">
           <Link
             href="/"
             className="p-2 rounded-full shadow dark:bg-box-primary-dark bg-box-primary-light"
@@ -67,7 +67,7 @@ const NoteInputs = ({ id, note, createMode }) => {
           </Link>
           <motion.input
             type="text"
-            className="placeholder:dark:opacity-50 text-2xl font-bold title-color bg-transparent outline-none px-2 py-1 rounded-xl w-96 border-2 dark:border-subtle-dark/10 border-subtle-light/50"
+            className="placeholder:dark:opacity-50 text-lg min-[369px]:text-2xl font-bold title-color bg-transparent outline-none px-2 py-1 rounded-xl w-full border-2 dark:border-subtle-dark/10 border-subtle-light/50"
             placeholder="your beautiful title.."
             defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
